@@ -41,18 +41,17 @@ const getAllQs = (product_id, page, count) => {
   )
 
   return db.pool.query(query, [product_id])
-  .then(res => res.rows)
+  .catch(err => {console.log('Error: ', err)})
 }
 
 const getAllAs = (question_id, page, count) => {
   const query = (
     `SELECT
     *, COALESCE(answers_photos.answer_id, answers.id) AS answer_id
-    FROM answers LEFT JOIN answers_photos ON answers.id = answers_photos.answer_id WHERE question_id = $1 AND answer_reported = 0`)
+    FROM answers LEFT JOIN answers_photos ON answers.id = answers_photos.answer_id WHERE question_id = $1 AND answer_reported = 0 ORDER BY answers.id`)
 
-
-  db.pool.query(query, [question_id])
-  .then(res => {console.log(res.rows)})
+  return db.pool.query(query, [question_id])
+  .catch(err => {console.log('Error: ', err)})
 }
 
 const postQ = (body, name, email, product_id) => {
@@ -123,7 +122,7 @@ const putAReported = (answer_id) => {
   .catch(err => {console.log('Error: ', err)})
 }
 
-getAllAs(3510000,1,1)
+//getAllAs(3510000,1,1)
 
 
 module.exports = {

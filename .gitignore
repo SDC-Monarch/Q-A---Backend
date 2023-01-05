@@ -12,3 +12,5 @@ logger.js
 etl*
 models2*
 db3*
+
+*.yaml
