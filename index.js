@@ -9,7 +9,7 @@ app.use(express.json())
 
 app.get('/qa/questions', (req, res) => {
   controllers.getAllQsController(req.query.product_id, req.query.page || 1, req.query.count || 5)
-  .then(results => {console.log(results); res.send(results)})
+  .then(results => res.send(results))
   .catch(err => res.statusCode(500).send(err))
 })
 
