@@ -2,11 +2,13 @@ const models = require('../models/models.js');
 
 const getAllQsController = (product_id, page, count) => {
   return models.getAllQs(product_id, page, count)
+  .then(res => res.rows[0])
   .catch(err => {console.log('Error: ', err)})
 }
 
 const getAllAsController = (question_id, page, count) => {
   return models.getAllAs(question_id, page, count)
+  .then(res => res.rows)
   .catch(err => {console.log('Error: ', err)})
 }
 

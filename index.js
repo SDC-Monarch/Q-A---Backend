@@ -7,16 +7,10 @@ const app = express()
 
 app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.send('hello');
-})
-
 app.get('/qa/questions', (req, res) => {
   controllers.getAllQsController(req.query.product_id, req.query.page || 1, req.query.count || 5)
-  .then(results => res.send(results))
-  .catch(err =>
-    {console.log(err)
-    res.statusCode(500).send(err)})
+  .then(results => {console.log(results); res.send(results)})
+  .catch(err => res.statusCode(500).send(err))
 })
 
 app.get('/qa/questions/:question_id/answers', (req, res) => {

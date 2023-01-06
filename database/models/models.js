@@ -48,7 +48,7 @@ const getAllAs = (question_id, page, count) => {
   const query = (
     `SELECT
     *, COALESCE(answers_photos.answer_id, answers.id) AS answer_id
-    FROM answers LEFT JOIN answers_photos ON answers.id = answers_photos.answer_id WHERE question_id = $1 AND answer_reported = 0 ORDER BY answers.id`)
+    FROM answers LEFT JOIN answers_photos ON answers.id = answers_photos.answer_id WHERE question_id = $1 AND answer_reported = 0`)
 
   return db.pool.query(query, [question_id])
   .catch(err => {console.log('Error: ', err)})
@@ -122,9 +122,6 @@ const putAReported = (answer_id) => {
   .catch(err => {console.log('Error: ', err)})
 }
 
-//getAllAs(3510000,1,1)
-
-
 module.exports = {
   getAllQs: getAllQs,
   getAllAs: getAllAs,
@@ -135,6 +132,3 @@ module.exports = {
   putAHelpful: putAHelpful,
   putAReported: putAReported
 }
-
-
-//Actually because the ids are sequential, you don't need offset. If you are passed in page 5 with a limit of 1000. You can start off with WHERE id > 5000
