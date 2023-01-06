@@ -1,0 +1,16 @@
+# Dependency directories
+node_modules/
+
+# Logs
+logs
+*.log
+logger.js
+
+.env
+*.csv
+
+etl*
+models2*
+db3*
+
+*.yaml
