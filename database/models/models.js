@@ -22,7 +22,6 @@ const getAllQs = (product_id, page, count) => {
                 'date', to_timestamp(date_written / 1000),
                 'answerer_name', answerer_name,
                 'helpfulness', helpful,
-                'reported', answer_reported,
                 'photos', (
                   SELECT COALESCE(json_agg(url), '[]')
                   FROM answers_photos
